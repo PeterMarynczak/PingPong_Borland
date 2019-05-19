@@ -9,9 +9,10 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-int x = 3;
-int y = 3;
-
+double x = -6;
+double y = -6;
+int iloscOdbic = 0;
+char kto;
 
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -73,23 +74,59 @@ void __fastcall TForm1::Timer_pilkaTimer(TObject *Sender)
    //odbij od dolnej sciany
    if(ball->Top + ball->Height >= tlo->Height)  y = -y;
 
-
+   //odbicie od lewej paletki
    if (ball->Left <= p1->Left+p1->Width && ball->Top >= p1->Top-20 &&
        ball->Top+ball->Height <= p1->Top+p1->Height+20 )
         {
             x *= -1;
+            x*= 1.1;
+            iloscOdbic++;
+            kto = 'l';
         }
+
+   //odbicie od prawej paletki
    if (ball->Left + ball->Width >= p2->Left && ball->Top >= p2->Top-15
             && ball->Top + ball->Height <= p2->Top + p2->Height+15 )
         {
             x *= -1;
+            x*= 1.1;
+            iloscOdbic++;
+            kto = 'p';
         }
 
-   if( (ball->Left < p1->Left+p1->Width-5) || (ball->Left > p2->Left) )
+   // przegrana
+   if( (ball->Left < p1->Left) || (ball->Left > p2->Left) )
      {
        Timer_pilka->Enabled = false;
        ball->Visible = false;
-     }
+       Button1->Visible = true;
+       Label1->Visible = true;
+       Label1->Caption = "Iloœæ odbiæ: " + IntToStr(iloscOdbic);
+       Label2->Visible = true;
+       }
+       if (kto == 'l')
+         Label2->Caption = "< Punkt dla gracza lewego";
+       else if (kto == 'p')
+         Label2->Caption = " Punkt dla gracza prawego >";
+   }
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+     ball->Left = 700;
+     ball->Top =  250;
+     iloscOdbic = 0;
+     kto = NULL;
+
+     ball->Visible = true;
+     x = -6;
+     y = -6;
+     Timer_pilka->Enabled = true;
+
+     Button1->Visible = false;
+     Label1->Visible = false;
+     Label2->Visible = false;
 }
 //---------------------------------------------------------------------------
 

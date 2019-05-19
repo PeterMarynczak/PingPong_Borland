@@ -22,6 +22,9 @@ __published:	// IDE-managed Components
         TTimer *dolP;
         TImage *ball;
         TTimer *Timer_pilka;
+        TButton *Button1;
+        TLabel *Label1;
+        TLabel *Label2;
         void __fastcall goraLTimer(TObject *Sender);
         void __fastcall dolLTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
@@ -31,6 +34,7 @@ __published:	// IDE-managed Components
         void __fastcall goraPTimer(TObject *Sender);
         void __fastcall dolPTimer(TObject *Sender);
         void __fastcall Timer_pilkaTimer(TObject *Sender);
+        void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);
