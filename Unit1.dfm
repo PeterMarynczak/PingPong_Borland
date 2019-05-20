@@ -1,10 +1,10 @@
-object Form1: TForm1
-  Left = 1770
-  Top = 218
+object PingPong: TPingPong
+  Left = 1825
+  Top = 219
   Width = 1191
   Height = 555
   Align = alCustom
-  Caption = 'Form1'
+  Caption = 'PingPong'
   Color = clBtnFace
   UseDockManager = True
   DockSite = True
@@ -14,7 +14,8 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
+  OnActivate = FormCreate
+  OnCreate = btnShowMsgClick
   OnKeyDown = FormKeyDown
   OnKeyUp = FormKeyUp
   DesignSize = (
@@ -5599,6 +5600,16 @@ object Form1: TForm1
     TabOrder = 1
     Visible = False
     OnClick = Button2Click
+  end
+  object btnShowMsg: TButton
+    Left = 552
+    Top = 432
+    Width = 75
+    Height = 25
+    Caption = 'Show &Msg'
+    TabOrder = 2
+    Visible = False
+    OnClick = btnShowMsgClick
   end
   object goraL: TTimer
     Enabled = False

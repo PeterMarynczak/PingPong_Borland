@@ -10,7 +10,7 @@
 #include <ExtCtrls.hpp>
 #include <Graphics.hpp>
 //---------------------------------------------------------------------------
-class TForm1 : public TForm
+class TPingPong : public TForm
 {
 __published:	// IDE-managed Components
         TImage *p1;
@@ -29,6 +29,7 @@ __published:	// IDE-managed Components
         TButton *Button2;
         TImage *winL;
         TImage *winP;
+        TButton *btnShowMsg;
         void __fastcall goraLTimer(TObject *Sender);
         void __fastcall dolLTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
@@ -41,11 +42,12 @@ __published:	// IDE-managed Components
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall Button2Click(TObject *Sender);
         void __fastcall Button1Click(TObject *Sender);
+        void __fastcall btnShowMsgClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-        __fastcall TForm1(TComponent* Owner);
+        __fastcall TPingPong(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern PACKAGE TPingPong *PingPong;
 //---------------------------------------------------------------------------
 #endif

@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TForm1 *Form1;
+TPingPong *PingPong;
 
 double x = 0;
 double y = 0;
@@ -20,26 +20,26 @@ int czynowagra = true;
 
 
 //---------------------------------------------------------------------------
-__fastcall TForm1::TForm1(TComponent* Owner)
+__fastcall TPingPong::TPingPong(TComponent* Owner)
         : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::goraLTimer(TObject *Sender)
+void __fastcall TPingPong::goraLTimer(TObject *Sender)
 {
    if(p1->Top > 10) p1->Top -= 10;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::dolLTimer(TObject *Sender)
+void __fastcall TPingPong::dolLTimer(TObject *Sender)
 {
    if(p1->Top+p1->Height < tlo->Height - 10) p1->Top += 10;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key,
+void __fastcall TPingPong::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
    if (Key == 0x41) goraL->Enabled = true;
@@ -49,7 +49,7 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
+void __fastcall TPingPong::FormKeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
    if (Key == 0x41) goraL->Enabled = false;
@@ -58,17 +58,17 @@ void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
    if (Key == VK_DOWN) dolP->Enabled = false;
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::goraPTimer(TObject *Sender)
+void __fastcall TPingPong::goraPTimer(TObject *Sender)
 {
    if(p2->Top > 10) p2->Top -= 10;
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::dolPTimer(TObject *Sender)
+void __fastcall TPingPong::dolPTimer(TObject *Sender)
 {
    if(p2->Top + p2->Height < tlo->Height - 10) p2->Top += 10;
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Timer_pilkaTimer(TObject *Sender)
+void __fastcall TPingPong::Timer_pilkaTimer(TObject *Sender)
 {
    ball->Left += x;
    ball->Top += y;
@@ -162,7 +162,7 @@ void __fastcall TForm1::Timer_pilkaTimer(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::FormCreate(TObject *Sender)
+void __fastcall TPingPong::FormCreate(TObject *Sender)
 {
      Label2->Visible = true;
      Label2->Caption = "Zagrajmy w PingPonga!";
@@ -185,7 +185,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 
 
 
-void __fastcall TForm1::Button2Click(TObject *Sender)
+void __fastcall TPingPong::Button2Click(TObject *Sender)
 {
    sndPlaySound("snd/click1.wav",SND_ASYNC);
    if (czynowagra == true)
@@ -238,7 +238,7 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Button1Click(TObject *Sender)
+void __fastcall TPingPong::Button1Click(TObject *Sender)
 {
      sndPlaySound("snd/click1.wav",SND_ASYNC);
 
@@ -258,6 +258,21 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
      Label1->Visible = false;
      Label2->Visible = false;
      wynik->Visible = false;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TPingPong::btnShowMsgClick(TObject *Sender)
+ {
+     ShowMessage("Witaj w grze PingPong.\n\n"
+"Lewy gracz steruje wciskaj¹c klawisze A do Z.\n"
+"Prawy gracz steruje wciskaj¹c strza³ki do góry i w dó³.\n\n"
+
+"Dla urozmaicenia zabawy:"
+"Kiedy odbijesz pi³kê na œrodku paletki, wówczas pi³ka przyspieszy.\n"
+"Im d³u¿ej odbijasz, tym pi³ka szybciej przemieszcza siê.\n"
+"Mo¿esz dowolnie zmieniaæ pole gry.\n\n"
+
+"Mi³ej zabawy!\n");
 }
 //---------------------------------------------------------------------------
 
