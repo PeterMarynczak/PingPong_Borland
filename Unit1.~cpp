@@ -9,8 +9,8 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-double x = -6;
-double y = -6;
+double x = 0;
+double y = 0;
 int iloscOdbic = 0;
 char kto;
 int wynik_lewy = 0;
@@ -126,20 +126,22 @@ void __fastcall TForm1::Timer_pilkaTimer(TObject *Sender)
 
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
+     Label2->Visible = true;
+     Label2->Caption = "Zagrajmy w PingPonga!";
+     Button2->Visible = true;
+     Timer_pilka->Enabled = false;
      ball->Left = 700;
      ball->Top =  250;
      iloscOdbic = 0;
      kto = NULL;
 
      ball->Visible = true;
-     x = -6;
-     y = -6;
-     Timer_pilka->Enabled = true;
+     //x = -6;
+     //y = -6;
+     //Timer_pilka->Enabled = true;
 
      Button1->Visible = false;
-     Button2->Visible = false;
      Label1->Visible = false;
-     Label2->Visible = false;
      wynik->Visible = false;
 }
 //---------------------------------------------------------------------------
@@ -155,6 +157,27 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
      kto = NULL;
      wynik_lewy = 0;
      wynik_prawy = 0;
+
+     ball->Visible = true;
+     x = -6;
+     y = -6;
+     Timer_pilka->Enabled = true;
+
+     Button1->Visible = false;
+     Button2->Visible = false;
+     Label1->Visible = false;
+     Label2->Visible = false;
+     wynik->Visible = false;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+     ball->Left = 700;
+     ball->Top =  250;
+     iloscOdbic = 0;
+     kto = NULL;
 
      ball->Visible = true;
      x = -6;

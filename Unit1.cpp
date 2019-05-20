@@ -2,6 +2,7 @@
 
 #include <vcl.h>
 #pragma hdrstop
+#include "mmsystem.h"
 
 #include "Unit1.h"
 //---------------------------------------------------------------------------
@@ -15,6 +16,8 @@ int iloscOdbic = 0;
 char kto;
 int wynik_lewy = 0;
 int wynik_prawy = 0;
+int czynowagra = true;
+
 
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -71,30 +74,61 @@ void __fastcall TForm1::Timer_pilkaTimer(TObject *Sender)
    ball->Top += y;
 
    //odbij od gornej sciany
-   if(ball->Top-5 <= tlo->Top)  y = -y;
+   if(ball->Top-5 <= tlo->Top)
+   {
+    sndPlaySound("snd/wall.wav",SND_ASYNC);
+    y = -y;
+   }
 
    //odbij od dolnej sciany
-   if(ball->Top + ball->Height >= tlo->Height)  y = -y;
+   if(ball->Top + ball->Height >= tlo->Height)
+   {
+     sndPlaySound("snd/wall.wav",SND_ASYNC);
+     y = -y;
+   }
 
    //odbicie od lewej paletki
    if (ball->Left <= p1->Left+p1->Width && ball->Top >= p1->Top-20 &&
        ball->Top+ball->Height <= p1->Top+p1->Height+20 )
         {
-            x *= -1;
-            x*= 1.1;
-            iloscOdbic++;
-            kto = 'l';
+
+        if(ball->Top > p1->Top-70 && ball->Top < p1->Top+120)
+              {
+                sndPlaySound("snd/ball.wav",SND_ASYNC);
+                x*= 1.2;
+                x *= -1;
+                iloscOdbic++;
+                kto = 'l';
+              }
+        else
+             {
+               sndPlaySound("snd/ball.wav",SND_ASYNC);
+               x *= -1;
+               x*= 1.05;
+               iloscOdbic++;
+               kto = 'l';
+             }
         }
 
    //odbicie od prawej paletki
    if (ball->Left + ball->Width >= p2->Left && ball->Top >= p2->Top-15
             && ball->Top + ball->Height <= p2->Top + p2->Height+15 )
-        {
-            x *= -1;
-            x*= 1.1;
-            iloscOdbic++;
-            kto = 'p';
-        }
+        if(ball->Top > p1->Top-70 && ball->Top < p1->Top+120)
+              {
+               sndPlaySound("snd/ball.wav",SND_ASYNC);
+                x*= 1.2;
+                x *= -1;
+                iloscOdbic++;
+                kto = 'p';
+              }
+        else
+            {
+                sndPlaySound("snd/ball.wav",SND_ASYNC);
+                x *= -1;
+                x*= 1.05;
+                iloscOdbic++;
+                kto = 'p';
+            }
 
    // przegrana
    if( (ball->Left < p1->Left) || (ball->Left > p2->Left) )
@@ -102,12 +136,16 @@ void __fastcall TForm1::Timer_pilkaTimer(TObject *Sender)
 
        if (kto == 'l')
        {
+         sndPlaySound("snd/fanfar.wav",SND_ASYNC);
          Label2->Caption = "< Punkt dla gracza lewego";
+         winL->Visible = true;
          wynik_lewy++;
        }
        else if (kto == 'p')
        {
+         sndPlaySound("snd/fanfar.wav",SND_ASYNC);
          Label2->Caption = " Punkt dla gracza prawego >";
+         winP->Visible = true;
          wynik_prawy++;
        }
        Timer_pilka->Enabled = false;
@@ -128,6 +166,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 {
      Label2->Visible = true;
      Label2->Caption = "Zagrajmy w PingPonga!";
+     winL->Visible = false;
+     winP->Visible = false;
      Button2->Visible = true;
      Timer_pilka->Enabled = false;
      ball->Left = 700;
@@ -136,10 +176,6 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
      kto = NULL;
 
      ball->Visible = true;
-     //x = -6;
-     //y = -6;
-     //Timer_pilka->Enabled = true;
-
      Button1->Visible = false;
      Label1->Visible = false;
      wynik->Visible = false;
@@ -151,6 +187,33 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
+   sndPlaySound("snd/click1.wav",SND_ASYNC);
+   if (czynowagra == true)
+    {
+     ball->Left = 700;
+     ball->Top =  250;
+     iloscOdbic = 0;
+     kto = NULL;
+     wynik_lewy = 0;
+     wynik_prawy = 0;
+     winL->Visible = false;
+     winP->Visible = false;
+     ball->Visible = true;
+     x = -6;
+     y = -6;
+     Timer_pilka->Enabled = true;
+
+     Button1->Visible = false;
+     Button2->Visible = false;
+     Label1->Visible = false;
+     Label2->Visible = false;
+     wynik->Visible = false;
+     czynowagra = false;
+    }
+    else if( Application->MessageBox(
+     "Czy na pewno zacz¹æ od nowa?","PotwierdŸ",
+     MB_YESNO | MB_ICONQUESTION) == IDYES )
+     {
      ball->Left = 700;
      ball->Top =  250;
      iloscOdbic = 0;
@@ -162,18 +225,23 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
      x = -6;
      y = -6;
      Timer_pilka->Enabled = true;
-
+     winL->Visible = false;
+     winP->Visible = false;
      Button1->Visible = false;
      Button2->Visible = false;
      Label1->Visible = false;
      Label2->Visible = false;
      wynik->Visible = false;
+     czynowagra = false;
+    }
 }
 //---------------------------------------------------------------------------
 
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
+     sndPlaySound("snd/click1.wav",SND_ASYNC);
+
      ball->Left = 700;
      ball->Top =  250;
      iloscOdbic = 0;
@@ -183,7 +251,8 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
      x = -6;
      y = -6;
      Timer_pilka->Enabled = true;
-
+     winL->Visible = false;
+     winP->Visible = false;
      Button1->Visible = false;
      Button2->Visible = false;
      Label1->Visible = false;

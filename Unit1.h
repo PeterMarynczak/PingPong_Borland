@@ -27,6 +27,8 @@ __published:	// IDE-managed Components
         TLabel *Label2;
         TLabel *wynik;
         TButton *Button2;
+        TImage *winL;
+        TImage *winP;
         void __fastcall goraLTimer(TObject *Sender);
         void __fastcall dolLTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
