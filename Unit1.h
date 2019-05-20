@@ -25,6 +25,8 @@ __published:	// IDE-managed Components
         TButton *Button1;
         TLabel *Label1;
         TLabel *Label2;
+        TLabel *wynik;
+        TButton *Button2;
         void __fastcall goraLTimer(TObject *Sender);
         void __fastcall dolLTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
@@ -34,6 +36,8 @@ __published:	// IDE-managed Components
         void __fastcall goraPTimer(TObject *Sender);
         void __fastcall dolPTimer(TObject *Sender);
         void __fastcall Timer_pilkaTimer(TObject *Sender);
+        void __fastcall FormCreate(TObject *Sender);
+        void __fastcall Button2Click(TObject *Sender);
         void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations

@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 1733
-  Top = 271
-  Width = 956
-  Height = 529
+  Left = 1819
+  Top = 236
+  Width = 998
+  Height = 531
   Align = alCustom
   Caption = 'Form1'
   Color = clBtnFace
@@ -14,18 +14,19 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyUp = FormKeyUp
   DesignSize = (
-    940
-    491)
+    982
+    493)
   PixelsPerInch = 96
   TextHeight = 13
   object tlo: TShape
     Left = 0
     Top = 0
-    Width = 940
-    Height = 491
+    Width = 982
+    Height = 493
     Align = alClient
     Brush.Color = clTeal
   end
@@ -588,7 +589,7 @@ object Form1: TForm1
       00881500881500880000}
   end
   object p2: TImage
-    Left = 893
+    Left = 935
     Top = 192
     Width = 30
     Height = 190
@@ -1147,8 +1148,8 @@ object Form1: TForm1
       00881500881500880000}
   end
   object ball: TImage
-    Left = 648
-    Top = 368
+    Left = 888
+    Top = 272
     Width = 30
     Height = 30
     AutoSize = True
@@ -1245,8 +1246,8 @@ object Form1: TForm1
     Transparent = True
   end
   object Label1: TLabel
-    Left = 351
-    Top = 247
+    Left = 372
+    Top = 240
     Width = 226
     Height = 34
     Alignment = taCenter
@@ -1261,10 +1262,10 @@ object Form1: TForm1
     Visible = False
   end
   object Label2: TLabel
-    Left = 236
-    Top = 124
+    Left = 257
+    Top = 112
     Width = 473
-    Height = 50
+    Height = 47
     Alignment = taCenter
     Anchors = []
     AutoSize = False
@@ -1276,18 +1277,34 @@ object Form1: TForm1
     ParentFont = False
     Visible = False
   end
+  object wynik: TLabel
+    Left = 261
+    Top = 181
+    Width = 465
+    Height = 34
+    Alignment = taCenter
+    Anchors = []
+    AutoSize = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -32
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
   object Button1: TButton
-    Left = 304
-    Top = 360
-    Width = 313
-    Height = 41
+    Left = 256
+    Top = 289
+    Width = 473
+    Height = 48
     Cursor = crHandPoint
     Anchors = []
     BiDiMode = bdLeftToRight
-    Caption = 'Nowa Gra'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -23
+    Caption = 'Nast'#281'pna runda >'
+    Font.Charset = EASTEUROPE_CHARSET
+    Font.Color = clLime
+    Font.Height = -19
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentBiDiMode = False
@@ -1295,6 +1312,26 @@ object Form1: TForm1
     TabOrder = 0
     Visible = False
     OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 256
+    Top = 346
+    Width = 473
+    Height = 41
+    Cursor = crHandPoint
+    Anchors = []
+    BiDiMode = bdLeftToRight
+    Caption = 'Nowa gra'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 1
+    Visible = False
+    OnClick = Button2Click
   end
   object goraL: TTimer
     Enabled = False
